@@ -1,13 +1,54 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { LoginForm } from "./components/Form";
+import LoginForm from "./components/LoginForm";
+import LangSwitcher from "./components/LangSwitcher";
+import SearchBar from "./components/SearchBar";
+import CoffeeSize from "./components/CoffeeSize";
+import AcceptTerms from "./components/AcceptTerms";
+import { Form } from "./components/Form";
 
 function App() {
+  const [lang, setLang] = useState("uk");
+  const [coffeeSize, setCoffeeSize] = useState("sm");
+  const [hasAccepted, setHasAccepted] = useState(false);
+  const [userData, setUserData] = useState({
+    login: "",
+    password: "",
+  });
+
+  const handleLogin = (userData) => {
+    console.log(userData);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setUserData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const { login, password } = form.elements;
+    handleLogin({
+      login: login.value,
+      password: password.value,
+    });
+    setUserData({ login: "", password: "" });
+  };
+
   return (
     <>
-      <LoginForm />
+      <Form onLogin={handleLogin} />
+      <SearchBar />
+      <LangSwitcher value={lang} onChange={setLang} />
+      <CoffeeSize coffeeSize={coffeeSize} handleSizeChange={setCoffeeSize} />
+      <AcceptTerms hasAccepted={hasAccepted} setHasAccepted={setHasAccepted} />
+      <LoginForm
+        userData={userData}
+        onChange={handleInputChange}
+        handleSubmit={handleSubmit}
+      />
     </>
   );
 }
