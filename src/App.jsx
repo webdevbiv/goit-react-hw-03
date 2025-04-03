@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import CoffeeSize from "./components/CoffeeSize";
 import AcceptTerms from "./components/AcceptTerms";
 import { Form } from "./components/Form";
+import FeedbackForm from "./components/FeedbackForm";
 
 function App() {
   const [lang, setLang] = useState("uk");
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <>
+      <FeedbackForm />
       <Form onLogin={handleLogin} />
       <SearchBar />
       <LangSwitcher value={lang} onChange={setLang} />
