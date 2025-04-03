@@ -16,6 +16,10 @@ function App() {
     login: "",
     password: "",
   });
+  const [formikValues, setFormikValues] = useState({
+    username: "",
+    email: "",
+  });
 
   const handleLogin = (userData) => {
     console.log(userData);
@@ -40,7 +44,7 @@ function App() {
 
   return (
     <>
-      <FeedbackForm />
+      <FeedbackForm onSubmit={setFormikValues} />
       <Form onLogin={handleLogin} />
       <SearchBar />
       <LangSwitcher value={lang} onChange={setLang} />

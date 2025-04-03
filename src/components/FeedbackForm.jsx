@@ -1,9 +1,26 @@
-import { Formik } from "formik";
-const FeedbackForm = () => {
+import { Formik, Form, Field } from "formik";
+
+const initialValues = {
+  username: "",
+  email: "",
+};
+
+const FeedbackForm = ({ onSubmit }) => {
+  const handleSubmit = (values, actions) => {
+    onSubmit(values);
+    actions.resetForm();
+  };
   return (
-    <Formik initialValues={{}} onSubmit={() => {}}>
-      ...
-    </Formik>
+    <>
+      <p>Formik Form</p>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Form>
+          <Field type="text" name="username" />
+          <Field type="email" name="email" />
+          <button type="submit">Submit</button>
+        </Form>
+      </Formik>
+    </>
   );
 };
 
