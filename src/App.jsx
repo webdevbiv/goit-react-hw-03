@@ -6,12 +6,19 @@ import contacts from "./data/contacts.json";
 
 const App = () => {
   const [userSearch, setUserSearch] = useState("");
+
+  const filteredContacts = contacts.filter(({ name }) =>
+    name.toLocaleLowerCase().includes(userSearch.toLowerCase())
+  );
+
+  const handleUserSearch = (e) => setUserSearch(e.target.value);
+
   return (
     <>
       <h1>Phonebook</h1>
       <ContactForm />
-      <SearchBox value={userSearch} onChange={setUserSearch} />
-      <ContactList contacts={contacts} />
+      <SearchBox value={userSearch} onChange={handleUserSearch} />
+      <ContactList contacts={filteredContacts} />
     </>
   );
 };
