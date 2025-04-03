@@ -5,9 +5,10 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import initialContacts from "./data/contacts.json";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const App = () => {
-  const [contacts, setContacts] = useState(initialContacts);
+  const [contacts, setContacts] = useLocalStorage("contacts", initialContacts);
   const [userSearch, setUserSearch] = useState("");
 
   const filteredContacts = contacts.filter(({ name }) =>
@@ -18,7 +19,9 @@ const App = () => {
 
   const handleNewContact = (values, { resetForm }) => {
     const isDuplicate = contacts.some(
-      (contact) => contact.name.toLowerCase() === values.name.toLowerCase()
+      (contact) =>
+        contact.name.toLowerCase() === values.name.toLowerCase() &&
+        contact.number === values.number
     );
 
     if (isDuplicate) {
