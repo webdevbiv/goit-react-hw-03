@@ -43,5 +43,11 @@
   button {
     padding: 5px 8px;
     cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 3px;
+    &:hover {
+      background-color: rgb(87, 87, 243);
+      color: white;
+    }
   }
 }
