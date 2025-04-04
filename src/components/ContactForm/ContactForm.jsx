@@ -1,6 +1,7 @@
 import { useId } from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import s from "./ContactForm.module.scss";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -24,7 +25,7 @@ const ContactForm = ({ initialValues, onSubmit }) => {
       onSubmit={onSubmit}
       validationSchema={FeedbackSchema}
     >
-      <Form>
+      <Form className={s.contactForm}>
         <label htmlFor={nameFieldId}>Name</label>
         <Field id={nameFieldId} name="name" />
         <ErrorMessage name="name" component="span" />
