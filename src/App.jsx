@@ -4,8 +4,10 @@ import { nanoid } from "nanoid";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
-import initialContacts from "./data/contacts.json";
+
 import useLocalStorage from "./hooks/useLocalStorage";
+
+import initialContacts from "./data/contacts.json";
 
 const App = () => {
   const [contacts, setContacts] = useLocalStorage("contacts", initialContacts);
